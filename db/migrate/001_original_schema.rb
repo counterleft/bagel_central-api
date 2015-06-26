@@ -1,7 +1,6 @@
 class OriginalSchema < ActiveRecord::Migration
   def self.up
-    create_table "bagels", id: false, force: true do |t|
-      t.integer  "id", null: false
+    create_table "bagels", force: true do |t|
       t.integer  "owner_id"
       t.integer  "teammate_id"
       t.integer  "opponent_1_id"
@@ -11,8 +10,7 @@ class OriginalSchema < ActiveRecord::Migration
       t.datetime "baked_on"
     end
 
-    create_table "players", id: false, force: true do |t|
-      t.integer  "id", null: false
+    create_table "players", force: true do |t|
       t.string   "name"
       t.datetime "created_at"
       t.datetime "updated_at"

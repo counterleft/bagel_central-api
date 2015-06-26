@@ -16,8 +16,7 @@ ActiveRecord::Schema.define(version: 1) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "bagels", id: false, force: :cascade do |t|
-    t.integer  "id",            null: false
+  create_table "bagels", force: :cascade do |t|
     t.integer  "owner_id"
     t.integer  "teammate_id"
     t.integer  "opponent_1_id"
@@ -27,8 +26,7 @@ ActiveRecord::Schema.define(version: 1) do
     t.datetime "baked_on"
   end
 
-  create_table "players", id: false, force: :cascade do |t|
-    t.integer  "id",                        null: false
+  create_table "players", force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
