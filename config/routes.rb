@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   jsonapi_resources :players
+  jsonapi_resources :bagels
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
