@@ -1,8 +1,8 @@
 class Bagel < ActiveRecord::Base
   belongs_to :owner, class_name: "Player"
   belongs_to :teammate, class_name: "Player"
-  belongs_to :opponent_1, class_name: "Player"
-  belongs_to :opponent_2, class_name: "Player"
+  belongs_to :offensive_opponent, class_name: "Player", foreign_key: "opponent_1_id"
+  belongs_to :defensive_opponent, class_name: "Player", foreign_key: "opponent_2_id"
 
   validates_datetime :baked_on, on: [:create, :update]
 

@@ -40,7 +40,7 @@ FactoryGirl.define do
     baked_on DateTime.now
     association :owner, factory: :alice
     association :teammate, factory: :sally
-    association :opponent_1, factory: :jill
-    association :opponent_2, factory: :jane
+    association :offensive_opponent, factory: :jill
+    association :defensive_opponent, factory: :jane
   end
 end
