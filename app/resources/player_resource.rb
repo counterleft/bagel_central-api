@@ -2,12 +2,18 @@ class PlayerResource < JSONAPI::Resource
   attributes :name, :surname, :created_at, :updated_at, :active, :plus_minus
   attribute :full_name
 
+  has_many :bagels
+
   def full_name
-    if @model.surname
-      "#{@model.name} #{@model.surname}"
-    else
-      @model.name
-    end
+    "#{model.name} #{model.surname}".rstrip!
+  end
+
+  def records_for_bagels(options = {})
+    Bagel.where("owner_id = ? or teammate_id = ? or opponent_1_id = ? or opponent_2_id = ?",
+                id,
+                id,
+                id,
+                id)
   end
 
   def self.updatable_fields(context)
