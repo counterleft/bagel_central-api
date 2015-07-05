@@ -1,11 +1,11 @@
 class PlayerResource < JSONAPI::Resource
-  attributes :name, :surname, :created_at, :updated_at, :active, :plus_minus
+  attributes :given_name, :surname, :created_at, :updated_at, :active, :plus_minus
   attribute :full_name
 
   has_many :bagels
 
   def full_name
-    "#{model.name} #{model.surname}".rstrip!
+    "#{model.given_name} #{model.surname}".rstrip!
   end
 
   def records_for_bagels(options = {})
