@@ -4,6 +4,9 @@ require "rails/test_help"
 require "factory_girl"
 require "database_cleaner"
 
+require "codeclimate-test-reporter"
+CodeClimate::TestReporter.start
+
 class ActiveSupport::TestCase
   # Setup all fixtures in test/fixtures/*.yml for all tests in alphabetical order.
   # fixtures :all
