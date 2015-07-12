@@ -81,6 +81,4 @@ test:
 production:
   <<: *default
   url: <%= ENV['DATABASE_URL'] %>
-  database: bagel_central_production
-  username: bagel_central
-  password: <%= ENV['BAGEL_CENTRAL_DATABASE_PASSWORD'] %>
+  pool: <%= ENV["DB_POOL"] || ENV['MAX_THREADS'] || 5 %>
