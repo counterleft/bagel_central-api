@@ -5,7 +5,7 @@ class PlayerResource < JSONAPI::Resource
   has_many :bagels
 
   def full_name
-    "#{model.given_name} #{model.surname}".rstrip!
+    "#{model.given_name} #{model.surname}".rstrip
   end
 
   def records_for_bagels(options = {})
