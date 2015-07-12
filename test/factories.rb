@@ -1,5 +1,6 @@
 FactoryGirl.define do
   factory :player do
+    sequence(:id, 5)
     name "Name"
     surname "Surname"
     active true

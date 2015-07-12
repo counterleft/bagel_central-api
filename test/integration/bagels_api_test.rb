@@ -107,4 +107,20 @@ class BagelsApiTest < ActionDispatch::IntegrationTest
       assert_equal("bagels", data['type'])
     end
   end
+
+  def test_bagels_page_size_defaults
+    (1..25).each { create(:bagel) }
+
+    get "/bagels"
+    assert_response 200
+
+    actual = ActiveSupport::JSON.decode(@response.body)
+    assert_equal(20, actual['data'].size)
+
+    get "/bagels?page[size]=100"
+    assert_response 200
+
+    get "/bagels?page[size]=999"
+    assert_response 400
+  end
 end

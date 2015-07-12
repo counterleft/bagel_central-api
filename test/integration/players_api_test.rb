@@ -53,4 +53,20 @@ class PlayersApiTest < ActionDispatch::IntegrationTest
       assert_equal("players", data['type'])
     end
   end
+
+  def test_players_page_size_defaults
+    (1..25).each { create(:player) }
+
+    get "/players"
+    assert_response 200
+
+    actual = ActiveSupport::JSON.decode(@response.body)
+    assert_equal(20, actual['data'].size)
+
+    get "/players?page[size]=100"
+    assert_response 200
+
+    get "/players?page[size]=999"
+    assert_response 400
+  end
 end
