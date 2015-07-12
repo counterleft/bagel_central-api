@@ -95,4 +95,16 @@ class BagelsApiTest < ActionDispatch::IntegrationTest
     assert_equal('Jane Surname', actual['data']['attributes']['full-name'])
     assert_equal('http://www.example.com/players/4/bagels', actual['data']['relationships']['bagels']['links']['related'])
   end
+
+  def test_get_bagels
+    get "/bagels"
+
+    assert_response 200
+
+    actual = ActiveSupport::JSON.decode(@response.body)
+    assert_not_empty(actual['data'])
+    actual['data'].each do |data|
+      assert_equal("bagels", data['type'])
+    end
+  end
 end
