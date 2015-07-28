@@ -28,6 +28,21 @@ class PlayersApiTest < ActionDispatch::IntegrationTest
     assert_equal('1', actual['data'][0]['id'])
     assert_equal('bagels', actual['data'][0]['type'])
     assert_not_nil(actual['data'][0]['attributes']['baked-on'])
+    assert_equal('http://www.example.com/bagels/1/owner', actual['data'][0]['relationships']['owner']['links']['related'])
+    assert_equal('http://www.example.com/bagels/1/teammate', actual['data'][0]['relationships']['teammate']['links']['related'])
+    assert_equal('http://www.example.com/bagels/1/offensive-opponent', actual['data'][0]['relationships']['offensive-opponent']['links']['related'])
+    assert_equal('http://www.example.com/bagels/1/defensive-opponent', actual['data'][0]['relationships']['defensive-opponent']['links']['related'])
+  end
+
+  def test_get_bagels_related_to_player_and_include_players
+    get "/players/1/bagels?include=owner,teammate,offensive-opponent,defensive-opponent"
+
+    assert_response 200
+
+    actual = ActiveSupport::JSON.decode(@response.body)
+    assert_equal('1', actual['data'][0]['id'])
+    assert_equal('bagels', actual['data'][0]['type'])
+    assert_not_nil(actual['data'][0]['attributes']['baked-on'])
     assert_equal('players', actual['data'][0]['relationships']['owner']['data']['type'])
     assert_equal('players', actual['data'][0]['relationships']['teammate']['data']['type'])
     assert_equal('players', actual['data'][0]['relationships']['offensive-opponent']['data']['type'])
