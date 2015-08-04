@@ -1,20 +1,14 @@
 class Team
   attr_reader :offense, :defense
+  delegate :given_name, to: :offense, prefix: 'offense'
+  delegate :given_name, to: :defense, prefix: 'defense'
 
   def initialize(offense, defense)
     @offense = offense
     @defense = defense
   end
 
-  def offense_given_name
-    offense.given_name
-  end
-
-  def defense_given_name
-    defense.given_name
-  end
-
-  def eql?(obj)
-    offense == obj.offense && defense == obj.defense
+  def eql?(other)
+    offense == other.offense && defense == other.defense
   end
 end

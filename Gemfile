@@ -4,7 +4,7 @@ ruby '2.2.2'
 
 gem 'rails', '4.2.1'
 gem 'rails-api'
-gem 'spring', :group => :development
+gem 'spring', group: :development
 gem 'pg'
 gem 'validates_timeliness', '~> 3.0'
 gem 'jsonapi-resources', '~> 0.5'
@@ -21,7 +21,6 @@ group :production do
   gem 'rails_12factor'
   gem 'puma'
 end
-
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

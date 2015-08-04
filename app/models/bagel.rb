@@ -7,7 +7,8 @@ class Bagel < ActiveRecord::Base
   validates_datetime :baked_on, on: [:create, :update]
 
   def self.with_player_id(player_id)
-    where('owner_id = ? or teammate_id = ? or opponent_1_id = ? or opponent_2_id = ?',
+    where('owner_id = ? or teammate_id = ? or
+          opponent_1_id = ? or opponent_2_id = ?',
           player_id,
           player_id,
           player_id,
@@ -21,8 +22,6 @@ class Bagel < ActiveRecord::Base
   def players_must_be_unique
     players = [owner_id, teammate_id, opponent_1_id, opponent_2_id].uniq
     possible_teams = players.combination(2)
-    if possible_teams.size != 6
-      errors.add(:base, 'A player cannot play multiple positions.')
-    end
+    errors.add(:base, 'A player cannot play multiple positions.') if possible_teams.size != 6
   end
 end

@@ -6,7 +6,7 @@ class Player < ActiveRecord::Base
   alias_attribute :given_name, :name
   alias_attribute 'given_name=', 'name='
 
-  def eql?(obj)
-    id == obj.id
+  def eql?(other)
+    id == other.id
   end
 end

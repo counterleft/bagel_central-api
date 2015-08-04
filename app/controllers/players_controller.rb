@@ -5,7 +5,7 @@ class PlayersController < ApplicationController
 
   def show
     if params['include'] && params['include'].split(',').include?('bagels')
-      raise JSONAPI::Exceptions::InvalidInclude.new('players', 'bagels')
+      fail JSONAPI::Exceptions::InvalidInclude.new('players', 'bagels')
     end
 
     super

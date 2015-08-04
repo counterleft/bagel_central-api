@@ -8,7 +8,7 @@ class PlayerResource < JSONAPI::Resource
     "#{model.given_name} #{model.surname}".rstrip
   end
 
-  def records_for_bagels(options = {})
+  def records_for_bagels
     Bagel.with_player_id(id)
   end
 
