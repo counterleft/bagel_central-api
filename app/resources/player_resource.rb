@@ -9,11 +9,7 @@ class PlayerResource < JSONAPI::Resource
   end
 
   def records_for_bagels(options = {})
-    Bagel.where("owner_id = ? or teammate_id = ? or opponent_1_id = ? or opponent_2_id = ?",
-                id,
-                id,
-                id,
-                id)
+    Bagel.with_player_id(id)
   end
 
   def self.updatable_fields(context)
