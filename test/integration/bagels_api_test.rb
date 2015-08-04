@@ -138,4 +138,9 @@ class BagelsApiTest < ActionDispatch::IntegrationTest
     get '/bagels?page[size]=999'
     assert_response 400
   end
+
+  def test_cannot_delete_bagels
+    delete '/bagels/1'
+    assert_response 405
+  end
 end

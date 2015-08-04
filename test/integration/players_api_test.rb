@@ -84,4 +84,14 @@ class PlayersApiTest < ActionDispatch::IntegrationTest
     get "/players?page[size]=999"
     assert_response 400
   end
+
+  def test_cannot_delete_players
+    delete '/players/1'
+    assert_response 405
+  end
+
+  def test_cannot_include_bagels_for_player
+    get '/players/1?include=bagels'
+    assert_response 400
+  end
 end
