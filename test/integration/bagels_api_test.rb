@@ -1,8 +1,8 @@
-require "test_helper"
+require 'test_helper'
 
 class BagelsApiTest < ActionDispatch::IntegrationTest
   def test_get_bagel_by_id
-    get "/bagels/1"
+    get '/bagels/1'
 
     assert_response 200
 
@@ -17,7 +17,7 @@ class BagelsApiTest < ActionDispatch::IntegrationTest
   end
 
   def test_get_bagel_and_include_players
-    get "/bagels/1?include=owner,teammate,offensive-opponent,defensive-opponent"
+    get '/bagels/1?include=owner,teammate,offensive-opponent,defensive-opponent'
 
     assert_response 200
 
@@ -40,7 +40,7 @@ class BagelsApiTest < ActionDispatch::IntegrationTest
   end
 
   def test_get_owner_related_to_bagel
-    get "/bagels/1/owner"
+    get '/bagels/1/owner'
 
     assert_response 200
 
@@ -58,7 +58,7 @@ class BagelsApiTest < ActionDispatch::IntegrationTest
   end
 
   def test_get_teammate_related_to_bagel
-    get "/bagels/1/teammate"
+    get '/bagels/1/teammate'
 
     assert_response 200
 
@@ -76,7 +76,7 @@ class BagelsApiTest < ActionDispatch::IntegrationTest
   end
 
   def test_get_offensive_opponent_related_to_bagel
-    get "/bagels/1/offensive-opponent"
+    get '/bagels/1/offensive-opponent'
 
     assert_response 200
 
@@ -94,7 +94,7 @@ class BagelsApiTest < ActionDispatch::IntegrationTest
   end
 
   def test_get_defensive_opponent_related_to_bagel
-    get "/bagels/1/defensive-opponent"
+    get '/bagels/1/defensive-opponent'
 
     assert_response 200
 
@@ -112,30 +112,30 @@ class BagelsApiTest < ActionDispatch::IntegrationTest
   end
 
   def test_get_bagels
-    get "/bagels"
+    get '/bagels'
 
     assert_response 200
 
     actual = ActiveSupport::JSON.decode(@response.body)
     assert_not_empty(actual['data'])
     actual['data'].each do |data|
-      assert_equal("bagels", data['type'])
+      assert_equal('bagels', data['type'])
     end
   end
 
   def test_bagels_page_size_defaults
     (1..25).each { create(:bagel) }
 
-    get "/bagels"
+    get '/bagels'
     assert_response 200
 
     actual = ActiveSupport::JSON.decode(@response.body)
     assert_equal(20, actual['data'].size)
 
-    get "/bagels?page[size]=100"
+    get '/bagels?page[size]=100'
     assert_response 200
 
-    get "/bagels?page[size]=999"
+    get '/bagels?page[size]=999'
     assert_response 400
   end
 end
