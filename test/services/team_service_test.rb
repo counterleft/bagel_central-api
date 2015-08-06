@@ -24,7 +24,8 @@ class TeamServiceTest < ActiveSupport::TestCase
 
     refute(actual.empty?)
     actual.each do |team|
-      assert(team.offense == player || team.defense == player)
+      assert(team.include_player?(player))
+      assert_equal(:defense, team.position(player))
       refute(team.offense == player && team.defense == player)
     end
   end
