@@ -4,7 +4,6 @@ ruby '2.2.2'
 
 gem 'rails', '4.2.1'
 gem 'rails-api'
-gem 'spring', group: :development
 gem 'pg'
 gem 'validates_timeliness', '~> 3.0'
 gem 'jsonapi-resources', '~> 0.5'
@@ -15,6 +14,12 @@ group :test do
   gem 'factory_girl_rails'
   gem 'database_cleaner'
   gem 'codeclimate-test-reporter', require: nil
+end
+
+group :development do
+  gem 'derailed'
+  gem 'spring'
+  gem 'stackprof'
 end
 
 group :production do
