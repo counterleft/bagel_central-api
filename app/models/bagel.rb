@@ -5,6 +5,7 @@ class Bagel < ActiveRecord::Base
   belongs_to :defensive_opponent, class_name: 'Player', foreign_key: 'opponent_2_id'
 
   validates_datetime :baked_on, on: [:create, :update]
+  validate :players_must_be_unique
 
   def self.with_player_id(player_id)
     where('owner_id = ? or teammate_id = ? or
@@ -14,8 +15,6 @@ class Bagel < ActiveRecord::Base
           player_id,
           player_id)
   end
-
-  validate :players_must_be_unique
 
   private
 
