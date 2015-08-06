@@ -8,7 +8,9 @@ class Team
     @defense = defense
   end
 
-  def eql?(other)
+  def ==(other)
     offense == other.offense && defense == other.defense
   end
+
+  alias eql? ==
 end
