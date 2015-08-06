@@ -1,6 +1,9 @@
 engines:
   rubocop:
     enabled: true
+    checks:
+      Rubocop/Style/Alias:
+        enabled: false
 ratings:
   paths:
   - "**.rb"
