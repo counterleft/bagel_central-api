@@ -7,6 +7,7 @@ gem 'rails-api'
 gem 'pg'
 gem 'validates_timeliness', '~> 3.0'
 gem 'jsonapi-resources', '~> 0.5'
+gem 'rack-cors'
 
 group :test do
   gem 'minitest-utils'
