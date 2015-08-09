@@ -23,9 +23,9 @@ class TeamService
     teams = Set.new
 
     bagels.each do |bagel|
-      if losing_team?(bagel, player_id)
+      if losing_team?(player_id, bagel)
         teams << Team.new(defense: bagel.owner, offense: bagel.teammate)
-      elsif winning_team?(bagel, player_id)
+      elsif winning_team?(player_id, bagel)
         teams << Team.new(offense: bagel.offensive_opponent, defense: bagel.defensive_opponent)
       end
     end
@@ -33,11 +33,11 @@ class TeamService
     teams
   end
 
-  def losing_team?(bagel, player_id)
+  def losing_team?(player_id, bagel)
     player_id == bagel.owner.id || player_id == bagel.teammate.id
   end
 
-  def winning_team?(bagel, player_id)
+  def winning_team?(player_id, bagel)
     player_id == bagel.offensive_opponent.id ||
       player_id == bagel.defensive_opponent.id
   end
