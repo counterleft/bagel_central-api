@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
   jsonapi_resources :bagels
   jsonapi_resources :players
+  jsonapi_resource :statuses do
+    get :heartbeats, to: 'statuses#heartbeats'
+  end
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
