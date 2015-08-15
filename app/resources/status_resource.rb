@@ -16,12 +16,4 @@ class StatusResource < JSONAPI::Resource
     status = 'up' if @model.services_up?
     status
   end
-
-  def self.updatable_fields(_context)
-    []
-  end
-
-  def self.creatable_fields(_context)
-    []
-  end
 end
