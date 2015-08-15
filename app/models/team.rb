@@ -25,5 +25,5 @@ class Team
     offense == other.offense && defense == other.defense
   end
 
-  alias eql? ==
+  alias_method :eql?, :==
 end
