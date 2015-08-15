@@ -4,6 +4,10 @@ engines:
     checks:
       Rubocop/Style/Alias:
         enabled: false
+      Rubocop/Style/Documentation:
+        enabled: false
+      Rubocop/Style/MultilineOperationIndentation:
+        enabled: false
 ratings:
   paths:
   - "**.rb"
