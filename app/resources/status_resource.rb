@@ -7,7 +7,7 @@ class StatusResource < JSONAPI::Resource
 
   def self.find_by_key(_key, options = {})
     context = options[:context]
-    model = StatusService.status_check
+    model = Status.current_status
     new(model, context)
   end
 

@@ -4,7 +4,7 @@ class StatusesController < ApplicationController
 
   def heartbeats
     http_status_code = :service_unavailable
-    http_status_code = :ok if StatusService.status_check.all_up?
+    http_status_code = :ok if Status.current_status.all_up?
     head http_status_code
   end
 

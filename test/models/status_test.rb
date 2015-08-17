@@ -1,14 +1,20 @@
 class StatusTest < ActiveSupport::TestCase
-  def test_service_and_all_status
-    actual = Status.new(services: true)
-    assert(actual.services_up?)
-    assert(actual.all_up?)
+  def test_status_is_up
+    assert(Status.current_status.services_up?, 'services up?')
   end
 
-  def test_service_and_all_status_down
-    actual = Status.new
-    refute(actual.services_up?)
-    refute(actual.all_up?)
+  def test_status_is_down_because_services_down
+    Bagel.stub :first, nil do
+      actual = Status.current_status
+      refute(actual.services_up?, 'services up?')
+      refute(actual.all_up?)
+    end
+
+    Player.stub :first, nil do
+      actual = Status.current_status
+      refute(actual.services_up?, 'services up?')
+      refute(actual.all_up?)
+    end
   end
 
   def test_id_is_not_nil
