@@ -1,4 +1,4 @@
-class StatusResource < JSONAPI::Resource
+class HealthStatusResource < JSONAPI::Resource
   attribute :services
 
   def self.verify_key(key, _context = nil)
@@ -7,7 +7,7 @@ class StatusResource < JSONAPI::Resource
 
   def self.find_by_key(_key, options = {})
     context = options[:context]
-    model = Status.current_status
+    model = HealthStatus.current_status
     new(model, context)
   end
 

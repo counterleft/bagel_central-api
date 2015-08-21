@@ -1,6 +1,6 @@
 require 'securerandom'
 
-class Status
+class HealthStatus
   attr_reader :id
 
   def self.current_status
