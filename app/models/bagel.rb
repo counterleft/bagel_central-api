@@ -7,14 +7,14 @@ class Bagel < ActiveRecord::Base
   validates_datetime :baked_on, on: [:create, :update]
   validate :players_must_be_unique
 
-  def self.with_player_id(player_id)
+  scope :with_player_id, ->(player_id) {
     where('owner_id = ? or teammate_id = ? or
           opponent_1_id = ? or opponent_2_id = ?',
           player_id,
           player_id,
           player_id,
           player_id)
-  end
+  }
 
   private
 
