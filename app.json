@@ -1,0 +1,8 @@
+{
+  "name": "Bagel Central API",
+  "description": "Heroku Docker config for Bagel Central API",
+  "image": "heroku/ruby",
+  "addons": [
+    "heroku-postgresql"
+  ]
+}
