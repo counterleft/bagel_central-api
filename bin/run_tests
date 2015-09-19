@@ -1,0 +1,3 @@
+#!/bin/sh
+
+docker-compose run shell bundle exec rake db:migrate test RAILS_ENV=test
