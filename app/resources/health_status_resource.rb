@@ -1,9 +1,7 @@
 class HealthStatusResource < JSONAPI::Resource
   attribute :services
 
-  def self.verify_key(key, _context = nil)
-    key && String(key)
-  end
+  key_type :uuid
 
   def self.find_by_key(_key, options = {})
     context = options[:context]
