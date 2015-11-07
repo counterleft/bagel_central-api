@@ -1,10 +1,10 @@
-class HealthStatusesController < ApplicationController
+class HealthChecksController < ApplicationController
   skip_before_action :setup_request, only: [:create, :update, :destroy]
   before_action :method_not_allowed, only: [:create, :update, :destroy]
 
-  def heartbeats
+  def heart_beats
     http_status_code = :service_unavailable
-    http_status_code = :ok if HealthStatus.current_status.all_up?
+    http_status_code = :ok if HealthCheck.current_status.all_up?
     head http_status_code
   end
 
